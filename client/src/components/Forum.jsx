@@ -16,16 +16,18 @@ export default function Forum() {
     getMessagesFromDB();
   }, []);
 
+  function filterMessages(value) {
+    const filter = value == 0 ? "" : value;
+    getMessagesFromDB(filter);
+  }
+
   async function getMessagesFromDB(filter = "") {
     const res = await fetch(`http://localhost:8080/forum/${filter}`);
     const data = await res.json();
     setMessage(data.reverse());
   }
 
-  function filterMessages(value) {
-    const filter = value == 0 ? "" : value;
-    getMessagesFromDB(filter);
-  }
+ 
 
   //   function deleteMessage(e) {
   //     e.preventDefault();
