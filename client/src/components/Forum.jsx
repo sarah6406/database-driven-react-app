@@ -38,7 +38,7 @@ export default function Forum() {
                 <li>{message.message}</li>
               </ul>
               <div className="italic">
-                Related to:
+                Category:
                 {message.favethings.map((favething) => (
                   <p key={favething}>{favething}</p>
                 ))}
