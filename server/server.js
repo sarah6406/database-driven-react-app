@@ -50,7 +50,7 @@ app.get("/forum/:category", async (req, res) => {
   `,
     [category]
   );
-  res.json(result.rows); // accessing the returned object to only show the inputted data from Supabase
+  res.json(result.rows);
 });
 
 app.post("/forum", async (req, res) => {

@@ -1,4 +1,5 @@
 import "./CSS/options.css";
+
 export default function Options({ filter }) {
   function onChange(e) {
     console.log(e.target.value);

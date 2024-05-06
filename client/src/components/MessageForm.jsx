@@ -1,8 +1,7 @@
-// import Nav from "./Nav";
 import { useState, useRef } from "react";
 import "./CSS/messageform.css";
 import Nav from "./Nav";
-// import Options from "./Options";
+
 export default function MessageForm() {
   const [messageForm, setMessageForm] = useState({
     name: "",
@@ -24,24 +23,13 @@ export default function MessageForm() {
     });
     setMessageForm({ name: "", age: "", message: "", favethings: "" });
     formRef.current.reset();
-    // resetForm();
-    console.log(await response.json());
 
-    // console.log(messageForm);
-    // console.log(setMessageForm);
+    console.log(await response.json());
   }
 
   function handleChange(e) {
-    // const form = document.getElementsByClassName("form");
     setMessageForm({ ...messageForm, [e.target.name]: e.target.value });
-    // form.reset();
-    // resetForm();
   }
-
-  // function resetForm() {
-  //   const form = document.getElementsByClassName("form");
-  //   form.reset();
-  // }
 
   return (
     <>
@@ -66,7 +54,6 @@ export default function MessageForm() {
           onChange={handleChange}
         />
         <label htmlFor="message">Message:</label>
-        {/* <input type="text" name="message" id="message" onChange={handleChange}></input> */}
         <textarea
           type="text"
           name="message"
@@ -95,10 +82,11 @@ export default function MessageForm() {
             Animals
           </option>
         </select>
-        {/* <Options handleChange={handleChange} /> */}
         <button id="button">Submit message!</button>
-        <p>Go to the Form page and check out other posts!</p>
+        
       </form>
+      <p>Go to the Form page and check out other posts!</p>
+    
     </>
   );
 }
