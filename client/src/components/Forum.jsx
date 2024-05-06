@@ -3,6 +3,8 @@ import Nav from "./Nav";
 import "./CSS/forum.css";
 import Options from "./Options";
 
+const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+
 export default function Forum() {
   const [message, setMessage] = useState([]);
   useEffect(() => {
@@ -15,7 +17,7 @@ export default function Forum() {
   }
 
   async function getMessagesFromDB(filter = "") {
-    const res = await fetch(`http://localhost:8080/forum/${filter}`);
+    const res = await fetch(`${VITE_API_URL}/forum/${filter}`);
     const data = await res.json();
     setMessage(data.reverse());
   }
