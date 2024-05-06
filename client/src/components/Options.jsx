@@ -8,7 +8,7 @@ export default function Options({ filter }) {
 
   return (
     <div className="filter">
-      <label htmlFor="category">Category:</label>
+      <label htmlFor="category">Filter messages by category:</label>
       <select
         name="favethings"
         id="category"
