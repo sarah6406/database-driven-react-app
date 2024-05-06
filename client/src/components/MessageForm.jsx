@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import "./CSS/messageform.css";
 import Nav from "./Nav";
 
+const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+
 export default function MessageForm() {
   const [messageForm, setMessageForm] = useState({
     name: "",
@@ -14,7 +16,7 @@ export default function MessageForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:8080/forum", {
+    const response = await fetch(`${VITE_API_URL}/forum`, {
       method: "POST",
       body: JSON.stringify(messageForm),
       headers: {
