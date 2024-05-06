@@ -1,5 +1,5 @@
 // import Nav from "./Nav";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./CSS/messageform.css";
 import Nav from "./Nav";
 // import Options from "./Options";
@@ -11,6 +11,8 @@ export default function MessageForm() {
     favethings: "",
   });
 
+  const formRef = useRef(null);
+
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await fetch("http://localhost:8080/forum", {
@@ -20,9 +22,9 @@ export default function MessageForm() {
         "Content-Type": "application/json",
       },
     });
-    // setMessageForm({ name: "", age: "", message: "", favethings: "" });
-
-    resetForm();
+    setMessageForm({ name: "", age: "", message: "", favethings: "" });
+    formRef.current.reset();
+    // resetForm();
     console.log(await response.json());
 
     // console.log(messageForm);
@@ -30,20 +32,22 @@ export default function MessageForm() {
   }
 
   function handleChange(e) {
+    // const form = document.getElementsByClassName("form");
     setMessageForm({ ...messageForm, [e.target.name]: e.target.value });
+    // form.reset();
     // resetForm();
   }
 
-  function resetForm() {
-    const form = document.getElementsByClassName("form");
-    form.reset();
-  }
+  // function resetForm() {
+  //   const form = document.getElementsByClassName("form");
+  //   form.reset();
+  // }
 
   return (
     <>
       <h1>Messages</h1>
       <Nav />
-      <form className="form" onSubmit={handleSubmit}>
+      <form ref={formRef} className="form" onSubmit={handleSubmit}>
         <p>Tell me about your favourite thing!</p>
         <label htmlFor="name">Name:</label>
         <input
@@ -54,7 +58,13 @@ export default function MessageForm() {
           onChange={handleChange}
         />
         <label htmlFor="age">Age:</label>
-        <input type="number" name="age" id="age" placeholder="Age..." onChange={handleChange} />
+        <input
+          type="number"
+          name="age"
+          id="age"
+          placeholder="Age..."
+          onChange={handleChange}
+        />
         <label htmlFor="message">Message:</label>
         {/* <input type="text" name="message" id="message" onChange={handleChange}></input> */}
         <textarea
